@@ -1,0 +1,35 @@
+syntax="proto3";
+
+package sftp;
+option java_package = "com.proto.SftpPb";
+option java_multiple_files = true;
+
+message Sftp {
+    string username = 1;
+    string passWord = 2;
+    string systemId = 3;
+    string hostKey  = 4;
+    string fileName = 5;
+    string hostPort = 6;
+    string clientKey = 7;
+}
+//copyRemoteToLocalService()
+
+message CopyLocalToRemoteRequest{
+    Sftp sftp = 1;
+}
+message CopyLocalToRemoteResponse{
+    string result = 1;
+}
+
+message CopyFromRemoteRequest{
+    Sftp sftp = 1;
+}
+message CopyFromRemoteResponse{
+    string result = 1;
+}
+service SFTP{
+    rpc CopyFromRemoteService(CopyFromRemoteRequest) returns (CopyFromRemoteResponse);
+    rpc CopyLocalToRemoteService(CopyLocalToRemoteRequest) returns (CopyLocalToRemoteResponse);
+}
+
